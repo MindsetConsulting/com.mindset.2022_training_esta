@@ -20,24 +20,8 @@ import {
   Card,
   RatingIndicator
 } from "@ui5/webcomponents-react";
-import { spacing } from "@ui5/webcomponents-react-base";
 import { useNavigate } from "react-router-dom";
-
-const employeeData = [{
-  name: 'John Smith',
-  department: 'Finance',
-  years: '7 years',
-  startDate: '1/1/14',
-  directReport: 'VP of Finance',
-  email: 'johnsmith@mindsetconsulting.com'
-}, {
-  name: 'Jane Smith',
-  department: 'DevOps',
-  years: '2 years',
-  startDate: '1/1/19',
-  directReport: 'Director of DevOps',
-  email: 'janesmith@mindsetconsulting.com'
-}];
+import { useSelector } from "react-redux";
 
 const skillData = [{
   title: 'BS Finance',
@@ -58,12 +42,14 @@ const skillData = [{
 export function EmployeeList() {
   const navigate = useNavigate();
 
+  const employees = useSelector(store => store.employeeReducer);
+
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
-  const [selectedEmployee, setSelectedEmployee] = useState(employeeData[0]);
+  const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
   const [selectedSkill, setSelectedSkill] = useState(skillData[0]);
 
   const onStartColumnClick = e => {
-    setSelectedEmployee(employeeData.find(item => item.name === e.detail.item.dataset.name));
+    setSelectedEmployee(employees.find(item => item.fullName === e.detail.item.dataset.fullName));
     setLayout(FCLLayout.TwoColumnsMidExpanded);
   };
 
@@ -94,18 +80,18 @@ export function EmployeeList() {
         </Toolbar>
         <List 
           onItemClick={onStartColumnClick}>
-          {employeeData.map(item => 
+          {employees.map(item => 
             <StandardListItem 
               description={item.department} 
-              data-name={item.name}>
-                {item.name}
+              data-fullName={item.fullName}>
+                {item.fullName}
             </StandardListItem>)}
         </List>
       </>} 
 
       midColumn={<>
         <Toolbar design={ToolbarDesign.Solid}>
-          <Title style={{ marginLeft: '12px' }}>{selectedEmployee.name}</Title>
+          <Title style={{ marginLeft: '12px' }}>{selectedEmployee.fullName}</Title>
           <ToolbarSpacer />
           <Button
             icon="add"
