@@ -49,7 +49,7 @@ export function EmployeeList() {
   const [selectedSkill, setSelectedSkill] = useState(skillData[0]);
 
   const onStartColumnClick = e => {
-    setSelectedEmployee(employees.find(item => item.fullName === e.detail.item.dataset.fullName));
+    setSelectedEmployee(employees.find(item => item.fullName === e.detail.item.dataset.fullname));
     setLayout(FCLLayout.TwoColumnsMidExpanded);
   };
 
