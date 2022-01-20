@@ -83,7 +83,7 @@ export function EmployeeList() {
           {employees.map(item => 
             <StandardListItem 
               description={item.department} 
-              data-fullName={item.fullName}>
+              data-fullname={item.fullName}>
                 {item.fullName}
             </StandardListItem>)}
         </List>

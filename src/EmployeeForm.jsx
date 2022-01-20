@@ -15,35 +15,25 @@ import {
     Option,
     FlexBox,
     InputType,
-    Button,
+    Button
 } from "@ui5/webcomponents-react";
 
 export function EmployeeForm () {
     const navigate = useNavigate();
-    const dispatch= useDispatch();
+    const dispatch = useDispatch();
 
-    const [employeeToAdd, setEmployeeToAdd] = useState({ 
+    let newEmployee = {
         fullName: '',
         startDate: '', 
         department: '', 
         directReport: '',  
         email: ''
-    });
+    }
 
-    const handleFullNameChange = (e) => {
-        setEmployeeToAdd({...employeeToAdd, fullName: e.target.value});
-    };
+    const [addEmployee, setAddEmployee] = useState(newEmployee);
 
-    const handleStartDateChange = (e) => {
-        setEmployeeToAdd({...employeeToAdd, startDate: e.target.value});
-    };
-
-    const handleDepartmentChange = (e) => {
-        setEmployeeToAdd({...employeeToAdd, department: e.target.value});
-    };
-
-    const handleDirectReportChange = (e) => {
-        setEmployeeToAdd({...employeeToAdd, directReport: e.target.value});
+    const handleAddEmployeeChange = (e) => {
+        setAddEmployee({...addEmployee, [e.target.name]: e.target.value});
     };
 
     const handleCancelButtonClick = () => {
@@ -54,61 +44,67 @@ export function EmployeeForm () {
         event.preventDefault();
         dispatch({
             type: 'ADD_EMPLOYEE',
+            payload: addEmployee
         });
-        console.log(employeeToAdd);
+        console.log(addEmployee);
     };
 
     return (
         <FlexBox>
-            <Form titleText={"Add New Employee"} style={{ margin: '50px'}}>
-                <FormGroup titleText={'Employee Information'}>
+            <Form titleText={"Add New Employee"} style={{ marginLeft: '150px', marginRight: '350px', marginTop: '50px'}}>
+                <FormGroup>
                     <FormItem label={'Full Name'}>
                         <Input 
-                            style={{ width: '75%'}}
+                            style={{ width: '80%'}}
                             type={InputType.Text}
                             placeholder="Full Name"
-                            onChange={handleFullNameChange}
-                            value={employeeToAdd.fullName}
+                            name="fullName"
+                            onChange={handleAddEmployeeChange}
+                            value={addEmployee.fullName}
                         />
                     </FormItem>
                     <FormItem label={'Start Date'}>
                         <DatePicker 
-                            style={{ width: '75%'}}
-                            onChange={handleStartDateChange}
-                            value={employeeToAdd.startDate}
+                            style={{ width: '80%'}}
+                            name="startDate"
+                            onChange={handleAddEmployeeChange}
+                            value={addEmployee.startDate}
                         ></DatePicker>
                     </FormItem>
                     <FormItem label={'Department'}>
                         <Select 
-                            style={{ width: '75%'}}
-                            onChange={handleDepartmentChange}
-                            value={employeeToAdd.department}
+                            style={{ width: '80%'}}
+                            name="department"
+                            onChange={handleAddEmployeeChange}
+                            value={addEmployee.department}
                         >
-                            <Option>DevOps</Option>
-                            <Option>Finance</Option>
+                            <Option value="DevOps">DevOps</Option>
+                            <Option value="Finance">Finance</Option>
                         </Select>
                     </FormItem>
                     <FormItem label={'Direct Report'}>
                         <Input 
-                            style={{ width: '75%'}}
+                            style={{ width: '80%'}}
                             type={InputType.Text}
                             placeholder="Direct Report"
-                            onChange={handleDirectReportChange}
-                            value={employeeToAdd.directReport}
+                            name="directReport"
+                            onChange={handleAddEmployeeChange}
+                            value={addEmployee.directReport}
                         />
                     </FormItem>
                     <FormItem label={'Email'}>
                         <Input 
-                            style={{ width: '75%'}}
+                            style={{ width: '80%'}}
                             type={InputType.Text}
                             placeholder="Email"
-                            onChange={(e) => setEmployeeToAdd.email(e.target.value)}
-                            value={employeeToAdd.email}
+                            name="email"
+                            onChange={handleAddEmployeeChange}
+                            value={addEmployee.email}
                         />
                     </FormItem>
                     <FormItem label={'Skills'}>
                         <MultiComboBox
-                            style={{ width: '75%'}}
+                            style={{ width: '80%'}}
                             placeholder="Skills"
                         >
                             <MultiComboBoxItem text='BS Finance'/>

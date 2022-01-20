@@ -15,6 +15,10 @@ export function ESTA() {
     navigate("/dashboard");
   }; //End handleLogoClick
 
+  const handleEmployeesClick = (e) => {
+    navigate(e.detail.item.dataset.key);
+  };
+
     return (
         <>
           <ShellBar
@@ -26,9 +30,10 @@ export function ESTA() {
             }
             primaryTitle="Employee Skill Tracker App (ESTA)"
             onLogoClick={handleLogoClick}
+            onMenuItemClick={handleEmployeesClick}
             menuItems={<>
-                <StandardListItem data-key="1">Employees</StandardListItem>
-                <StandardListItem data-key="2">Skills</StandardListItem>
+                <StandardListItem data-key="/employeelist">Employees</StandardListItem>
+                <StandardListItem data-key="/skilllist">Skills</StandardListItem>
               </>}
           >
           </ShellBar>
