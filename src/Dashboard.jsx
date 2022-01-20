@@ -22,7 +22,7 @@ export function Dashboard() {
         <Card
             interactive
             onClick={handleEmployeeCardClick}
-            style={{ width: "300px" }}
+            style={{ width: "150px", height: "175px", margin: "20px" }}
         >
             <Text style={spacing.sapUiContentPadding}>
                 EMPLOYEES
@@ -31,7 +31,7 @@ export function Dashboard() {
         <Card 
             interactive
             onClick={handleSkillCardClick}
-            style={{ width: "300px" }}
+            style={{ width: "150px", height: "175px", margin: "20px" }}
         >
             <Text style={spacing.sapUiContentPadding}>
                 SKILLS

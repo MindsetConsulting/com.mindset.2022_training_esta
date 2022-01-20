@@ -4,7 +4,7 @@ import { Dashboard } from "./Dashboard";
 import { EmployeeList } from "./EmployeeList";
 import { SkillList } from "./SkillList";
 import { EmployeeForm } from "./EmployeeForm";
-import { Avatar, ShellBar, ShellBarItem, StandardListItem } from "@ui5/webcomponents-react";
+import { Avatar, ShellBar, StandardListItem } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/add.js";
 
 export function ESTA() {
@@ -18,10 +18,10 @@ export function ESTA() {
     return (
         <>
           <ShellBar
-            logo={<img src="mindset_logo.png" />}
+            logo={<img src="mindset_logo.png" alt="Mindset Logo"/>}
             profile={
               <Avatar>
-                <img src="profilePictureExample.png" />
+                <img src="profilePictureExample.png" alt="Profile Avatar"/>
               </Avatar>
             }
             primaryTitle="Employee Skill Tracker App (ESTA)"
@@ -31,7 +31,6 @@ export function ESTA() {
                 <StandardListItem data-key="2">Skills</StandardListItem>
               </>}
           >
-            <ShellBarItem icon="add" text="Add" />
           </ShellBar>
 
           <Routes>

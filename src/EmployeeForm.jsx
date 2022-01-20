@@ -23,20 +23,32 @@ export function EmployeeForm () {
     const dispatch= useDispatch();
 
     const [employeeToAdd, setEmployeeToAdd] = useState({ 
-        fullName: '', 
-        department: '', 
-        directReport: '', 
+        fullName: '',
         startDate: '', 
+        department: '', 
+        directReport: '',  
         email: ''
     });
 
     const handleFullNameChange = (e) => {
         setEmployeeToAdd({...employeeToAdd, fullName: e.target.value});
-    }
+    };
+
+    const handleStartDateChange = (e) => {
+        setEmployeeToAdd({...employeeToAdd, startDate: e.target.value});
+    };
+
+    const handleDepartmentChange = (e) => {
+        setEmployeeToAdd({...employeeToAdd, department: e.target.value});
+    };
+
+    const handleDirectReportChange = (e) => {
+        setEmployeeToAdd({...employeeToAdd, directReport: e.target.value});
+    };
 
     const handleCancelButtonClick = () => {
         navigate('/employeelist');
-    }
+    };
 
     const handleSubmitButtonClick = (event) => {
         event.preventDefault();
@@ -44,7 +56,7 @@ export function EmployeeForm () {
             type: 'ADD_EMPLOYEE',
         });
         console.log(employeeToAdd);
-    }
+    };
 
     return (
         <FlexBox>
@@ -62,14 +74,14 @@ export function EmployeeForm () {
                     <FormItem label={'Start Date'}>
                         <DatePicker 
                             style={{ width: '75%'}}
-                            onChange={(e) => setEmployeeToAdd.startDate(e.target.value)}
+                            onChange={handleStartDateChange}
                             value={employeeToAdd.startDate}
                         ></DatePicker>
                     </FormItem>
                     <FormItem label={'Department'}>
                         <Select 
                             style={{ width: '75%'}}
-                            onChange={(e) => setEmployeeToAdd.department(e.target.value)}
+                            onChange={handleDepartmentChange}
                             value={employeeToAdd.department}
                         >
                             <Option>DevOps</Option>
@@ -81,7 +93,7 @@ export function EmployeeForm () {
                             style={{ width: '75%'}}
                             type={InputType.Text}
                             placeholder="Direct Report"
-                            onChange={(e) => setEmployeeToAdd.directReport(e.target.value)}
+                            onChange={handleDirectReportChange}
                             value={employeeToAdd.directReport}
                         />
                     </FormItem>
