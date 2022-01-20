@@ -59,15 +59,14 @@ export function EmployeeForm () {
                             type={InputType.Text}
                             placeholder="Full Name"
                             name="fullName"
-                            onChange={handleAddEmployeeChange}
                             value={addEmployee.fullName}
+                            onChange={handleAddEmployeeChange}
                         />
                     </FormItem>
                     <FormItem label={'Start Date'}>
                         <DatePicker 
                             style={{ width: '80%'}}
                             name="startDate"
-                            onChange={handleAddEmployeeChange}
                             value={addEmployee.startDate}
                         ></DatePicker>
                     </FormItem>
@@ -75,7 +74,6 @@ export function EmployeeForm () {
                         <Select 
                             style={{ width: '80%'}}
                             name="department"
-                            onChange={handleAddEmployeeChange}
                             value={addEmployee.department}
                         >
                             <Option value="DevOps">DevOps</Option>
@@ -88,8 +86,8 @@ export function EmployeeForm () {
                             type={InputType.Text}
                             placeholder="Direct Report"
                             name="directReport"
-                            onChange={handleAddEmployeeChange}
                             value={addEmployee.directReport}
+                            onChange={handleAddEmployeeChange}
                         />
                     </FormItem>
                     <FormItem label={'Email'}>
@@ -98,8 +96,8 @@ export function EmployeeForm () {
                             type={InputType.Text}
                             placeholder="Email"
                             name="email"
-                            onChange={handleAddEmployeeChange}
                             value={addEmployee.email}
+                            onChange={handleAddEmployeeChange}
                         />
                     </FormItem>
                     <FormItem label={'Skills'}>
@@ -120,7 +118,6 @@ export function EmployeeForm () {
                 <Button 
                     design={"Emphasized"} 
                     style={{ width: '150px' }}
-                    submits
                     onClick={handleSubmitButtonClick}
                 >Add Employee</Button>  
             </Form>
