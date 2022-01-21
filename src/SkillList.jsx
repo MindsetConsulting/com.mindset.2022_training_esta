@@ -50,7 +50,7 @@ export function SkillList() {
       <TableColumn style={{ width: '3rem'}}>
         <CheckBox />
       </TableColumn>
-      <TableColumn style={{ width: '25rem'}}>
+      <TableColumn style={{ width: '20rem'}}>
         <Label>Skill</Label>
       </TableColumn>
       <TableColumn>
@@ -58,6 +58,9 @@ export function SkillList() {
       </TableColumn>
       <TableColumn>
         <Label>Department</Label>
+      </TableColumn>
+      <TableColumn>
+        <Label>Accrediting Institution</Label>
       </TableColumn>
       <TableRow>
         <TableCell>
@@ -70,7 +73,10 @@ export function SkillList() {
           <Label>University Degree</Label>
         </TableCell>
         <TableCell>
-          <Label>n/a</Label>
+          <Label>Finance</Label>
+        </TableCell>
+        <TableCell>
+          <Label>University of Somewhere</Label>
         </TableCell>
       </TableRow>
       <TableRow>
@@ -82,6 +88,9 @@ export function SkillList() {
         </TableCell>
         <TableCell>
           <Label>SAP Certification</Label>
+        </TableCell>
+        <TableCell>
+          <Label>DevOps</Label>
         </TableCell>
         <TableCell>
           <Label>SAP</Label>

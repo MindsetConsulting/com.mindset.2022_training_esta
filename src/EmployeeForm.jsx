@@ -36,6 +36,10 @@ export function EmployeeForm () {
         setAddEmployee({...addEmployee, [e.target.name]: e.target.value});
     };
 
+    const handleDepartmentChange = (e) => {
+        setAddEmployee({...addEmployee, department: e.target.value});
+    };
+
     const handleCancelButtonClick = () => {
         navigate('/employeelist');
     };
@@ -51,7 +55,9 @@ export function EmployeeForm () {
 
     return (
         <FlexBox>
-            <Form titleText={"Add New Employee"} style={{ marginLeft: '150px', marginRight: '350px', marginTop: '50px'}}>
+            <Form 
+                titleText={"Add New Employee"} 
+                style={{ marginLeft: '150px', marginRight: '350px', marginTop: '50px', paddingBottom: '100px'}}>
                 <FormGroup>
                     <FormItem label={'Full Name'}>
                         <Input 
@@ -73,10 +79,8 @@ export function EmployeeForm () {
                     <FormItem label={'Department'}>
                         <ComboBox 
                             style={{ width: '80%'}}
-                            name="department"
                             placeholder="Department"
-                            onChange={handleAddEmployeeChange}
-                            onSelectionChange={handleAddEmployeeChange}
+                            onChange={handleDepartmentChange}
                         >
                             <ComboBoxItem text="DevOps"/>
                             <ComboBoxItem text="Finance"/>
