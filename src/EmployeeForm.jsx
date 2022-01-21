@@ -15,6 +15,7 @@ import {
     ComboBox,
     ComboBoxItem
 } from "@ui5/webcomponents-react";
+import { useSelector } from "react-redux";
 
 export function EmployeeForm () {
     const navigate = useNavigate();
@@ -27,6 +28,8 @@ export function EmployeeForm () {
         directReport: '',  
         email: ''
     }
+
+    const departments = useSelector(store => store.departmentReducer);
 
     const [addEmployee, setAddEmployee] = useState(newEmployee);
 
@@ -77,8 +80,9 @@ export function EmployeeForm () {
                             placeholder="Department"
                             onChange={handleDepartmentChange}
                         >
-                            <ComboBoxItem text="DevOps"/>
-                            <ComboBoxItem text="Finance"/>
+                            {departments.map(dep =>
+                              <ComboBoxItem text={dep.name} />  
+                            )}
                         </ComboBox>
                     </FormItem>
                     <FormItem label={'Title'}>

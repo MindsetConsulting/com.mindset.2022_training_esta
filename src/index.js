@@ -56,6 +56,18 @@ const skills = [
     }
 ]
 
+const departments = [
+    {
+        name: 'DevOps'
+    },
+    {
+        name: 'Finance'
+    },
+    {
+        name: 'Human Resources'
+    }
+]
+
 
 const employeeReducer = (state = employees, action) => {
     if (action.type === 'ADD_EMPLOYEE') {
@@ -71,11 +83,16 @@ const skillReducer = (state = skills, action) => {
     return state;
 };
 
+const departmentReducer = (state = departments, action) => {
+    return state;
+};
+
 
 const storeInstances = createStore(
     combineReducers({
         employeeReducer,
         skillReducer,
+        departmentReducer,
     }),
     applyMiddleware(
         logger

@@ -23,6 +23,7 @@ export function SkillList() {
   const navigate = useNavigate();
 
   const skills = useSelector(store => store.skillReducer);
+  const departments = useSelector(store => store.departmentReducer);
 
   const [searchFilter, setSearchFilter] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
@@ -68,8 +69,9 @@ export function SkillList() {
           placeholder="Department"
           onChange={handleDepartmentFilter}
         >
-          <ComboBoxItem text="DevOps" />
-          <ComboBoxItem text="Finance" />
+          {departments.map(dep =>
+            <ComboBoxItem text={dep.name} />  
+          )}
         </ComboBox>
       </FilterGroupItem>
     </FilterBar>
