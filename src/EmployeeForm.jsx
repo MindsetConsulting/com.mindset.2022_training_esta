@@ -11,11 +11,11 @@ import {
     DatePicker,
     MultiComboBox,
     MultiComboBoxItem,
-    Select,
-    Option,
     FlexBox,
     InputType,
-    Button
+    Button,
+    ComboBox,
+    ComboBoxItem
 } from "@ui5/webcomponents-react";
 
 export function EmployeeForm () {
@@ -71,14 +71,16 @@ export function EmployeeForm () {
                         ></DatePicker>
                     </FormItem>
                     <FormItem label={'Department'}>
-                        <Select 
+                        <ComboBox 
                             style={{ width: '80%'}}
                             name="department"
-                            value={addEmployee.department}
+                            placeholder="Department"
+                            onChange={handleAddEmployeeChange}
+                            onSelectionChange={handleAddEmployeeChange}
                         >
-                            <Option value="DevOps">DevOps</Option>
-                            <Option value="Finance">Finance</Option>
-                        </Select>
+                            <ComboBoxItem text="DevOps"/>
+                            <ComboBoxItem text="Finance"/>
+                        </ComboBox>
                     </FormItem>
                     <FormItem label={'Direct Report'}>
                         <Input 
