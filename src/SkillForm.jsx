@@ -43,7 +43,11 @@ export function SkillForm () {
 
     const handleSubmitButtonClick = (event) => {
         event.preventDefault();
-        console.log(addSkill);
+        dispatch({
+            type: 'ADD_SKILL',
+            payload: addSkill
+        });
+        navigate('/skilllist');
     };
 
 
