@@ -40,6 +40,10 @@ export function EmployeeForm () {
         setAddEmployee({...addEmployee, department: e.target.value});
     };
 
+    const handleStartDateChange = (e) => {
+        setAddEmployee({...addEmployee, startDate: e.detail.value});
+    };
+
     const handleCancelButtonClick = () => {
         navigate('/employeelist');
     };
@@ -50,7 +54,7 @@ export function EmployeeForm () {
             type: 'ADD_EMPLOYEE',
             payload: addEmployee
         });
-        console.log(addEmployee);
+        navigate('/employeelist');
     };
 
     return (
@@ -74,6 +78,7 @@ export function EmployeeForm () {
                             style={{ width: '80%'}}
                             name="startDate"
                             value={addEmployee.startDate}
+                            onChange={handleStartDateChange}
                         ></DatePicker>
                     </FormItem>
                     <FormItem label={'Department'}>
