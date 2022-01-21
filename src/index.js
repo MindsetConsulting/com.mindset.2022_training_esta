@@ -27,9 +27,31 @@ const employees = [
     },
 ]
 
+const skills = [
+    {
+        title: 'BS Finance',
+        type: 'University Degree',
+        department: 'Finance',
+        institution: 'University of Someplace'
+    },
+    {
+        title: 'SAP Fiori 1',
+        type: 'SAP Certification',
+        department: 'DevOps',
+        institution: 'SAP'
+    }
+]
+
 
 const employeeReducer = (state = employees, action) => {
     if (action.type === 'ADD_EMPLOYEE') {
+        return [...state, action.payload];
+    }
+    return state;
+};
+
+const skillReducer = (state = skills, action) => {
+    if (action.type === 'ADD_SKILL') {
         return [...state, action.payload];
     }
     return state;
@@ -39,6 +61,7 @@ const employeeReducer = (state = employees, action) => {
 const storeInstances = createStore(
     combineReducers({
         employeeReducer,
+        skillReducer,
     }),
     applyMiddleware(
         logger

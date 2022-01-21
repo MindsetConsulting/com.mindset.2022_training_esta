@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { 
   Label,
   Table,
@@ -17,6 +18,8 @@ import {
 } from "@ui5/webcomponents-react";
 
 export function SkillList() {
+  const skills = useSelector(store => store.skillReducer);
+
   return (
     <>
     <FilterBar>
@@ -62,40 +65,24 @@ export function SkillList() {
       <TableColumn>
         <Label>Accrediting Institution</Label>
       </TableColumn>
+      {skills.map(skill =>
       <TableRow>
         <TableCell>
-          <CheckBox />
+          <CheckBox/>
         </TableCell>
         <TableCell>
-          <Label>Bachelor of Science</Label>
+          <Label>{skill.title}</Label>
         </TableCell>
         <TableCell>
-          <Label>University Degree</Label>
+          <Label>{skill.type}</Label>
         </TableCell>
         <TableCell>
-          <Label>Finance</Label>
+          <Label>{skill.department}</Label>
         </TableCell>
         <TableCell>
-          <Label>University of Somewhere</Label>
+          <Label>{skill.institution}</Label>
         </TableCell>
-      </TableRow>
-      <TableRow>
-        <TableCell>
-          <CheckBox />
-        </TableCell>
-        <TableCell>
-          <Label>SAP Fiori Level 1</Label>
-        </TableCell>
-        <TableCell>
-          <Label>SAP Certification</Label>
-        </TableCell>
-        <TableCell>
-          <Label>DevOps</Label>
-        </TableCell>
-        <TableCell>
-          <Label>SAP</Label>
-        </TableCell>
-      </TableRow>
+      </TableRow>)}
     </Table>
     </>
   );
