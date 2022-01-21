@@ -1,5 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 import { 
   Label,
   Table,
@@ -20,6 +21,17 @@ import {
 export function SkillList() {
   const skills = useSelector(store => store.skillReducer);
 
+  const [departmentFilter, setDepartmentFilter] = useState('');
+  const [typeFilter, setTypeFilter] = useState('');
+
+  const handleDepartmentFilter = (e) => {
+    setDepartmentFilter({...departmentFilter, depFilter: e.target.value})
+  }
+
+  const handleTypeFilter = (e) => {
+    setTypeFilter({...typeFilter, typeFilter: e.target.value})
+  }
+
   return (
     <>
     <FilterBar>
@@ -27,24 +39,33 @@ export function SkillList() {
         <Input placeholder="Search" />
       </FilterGroupItem>
       <FilterGroupItem>
-        <ComboBox placeholder="Skill Type">
-          <ComboBoxItem text="ComboBoxItem 1" />
-          <ComboBoxItem text="ComboBoxItem 2" />
-          <ComboBoxItem text="ComboBoxItem 3" />
+        <ComboBox 
+          placeholder="Skill Type"
+          onChange={handleTypeFilter}
+        >
+          <ComboBoxItem text="University Degree" />
+          <ComboBoxItem text="SAP Certification" />
+          <ComboBoxItem text="License" />
         </ComboBox>
       </FilterGroupItem>
       <FilterGroupItem>
-        <ComboBox placeholder="Department">
-          <ComboBoxItem text="ComboBoxItem 1" />
-          <ComboBoxItem text="ComboBoxItem 2" />
-          <ComboBoxItem text="ComboBoxItem 3" />
+        <ComboBox 
+          placeholder="Department"
+          onChange={handleDepartmentFilter}
+        >
+          <ComboBoxItem text="DevOps" />
+          <ComboBoxItem text="Finance" />
         </ComboBox>
+      </FilterGroupItem>
+      <FilterGroupItem>
+        <Button design="Emphasized" style={{ width: '75px'}}>Search</Button>
       </FilterGroupItem>
     </FilterBar>
     <FlexBox justifyContent="SpaceBetween" style={{ marginLeft: '20px', marginRight: '20px', marginTop: '20px'}}>
       <Title>Skills</Title>
       <FlexBox>
         <Button design="Transparent">Create</Button>
+        <Button design="Transparent">Edit</Button>
         <Button design="Transparent">Copy</Button>
         <Button design="Transparent">Delete</Button>
       </FlexBox>
@@ -65,7 +86,7 @@ export function SkillList() {
       <TableColumn>
         <Label>Accrediting Institution</Label>
       </TableColumn>
-      {skills.map(skill =>
+      {skills.filter(item => item.department === departmentFilter.depFilter && item.type === typeFilter.typeFilter).map(skill =>
       <TableRow>
         <TableCell>
           <CheckBox/>

@@ -122,6 +122,13 @@ export function EmployeeList() {
             </FlexBox>
 
             <FlexBox>
+              <Label>Title:</Label>
+              <Text style={{ marginLeft: '2px'}}>
+                {selectedEmployee.title}
+              </Text>
+            </FlexBox>
+
+            <FlexBox>
               <Label>Direct Report:</Label>
               <Text style={{ marginLeft: '2px' }}>
                 {selectedEmployee.directReport}

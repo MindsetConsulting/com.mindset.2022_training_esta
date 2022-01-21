@@ -9,8 +9,6 @@ import {
     FormItem,
     Input,
     DatePicker,
-    MultiComboBox,
-    MultiComboBoxItem,
     FlexBox,
     InputType,
     Button,
@@ -110,16 +108,6 @@ export function EmployeeForm () {
                             value={addEmployee.email}
                             onChange={handleAddEmployeeChange}
                         />
-                    </FormItem>
-                    <FormItem label={'Skills'}>
-                        <MultiComboBox
-                            style={{ width: '80%'}}
-                            placeholder="Skills"
-                        >
-                            <MultiComboBoxItem text='BS Finance'/>
-                            <MultiComboBoxItem text='Fiori 1'/>
-                            <MultiComboBoxItem text='AWS Certification'/>
-                        </MultiComboBox>
                     </FormItem>
                 </FormGroup>
                 <Button

@@ -14,6 +14,7 @@ const employees = [
     { 
         fullName: 'John Smith',
         department: 'Finance',
+        title: 'Director of Finance',
         directReport: 'VP of Finance',
         startDate: 'Jan 1, 2014',
         email: 'johnsmith@mindsetconsulting.com'
@@ -21,10 +22,11 @@ const employees = [
     { 
         fullName: 'Jane Smith',
         department: 'DevOps',
+        title: 'Junior Developer',
         directReport: 'Director of DevOps',
         startDate: 'Jan 1, 2020',
         email: 'janesmith@mindsetconsulting.com'
-    },
+    }
 ]
 
 const skills = [
@@ -39,6 +41,18 @@ const skills = [
         type: 'SAP Certification',
         department: 'DevOps',
         institution: 'SAP'
+    },
+    {
+        title: 'Amazon Web Services',
+        type: 'AWS Certification',
+        department: 'DevOps',
+        institution: 'Amazon'
+    },
+    {
+        title: 'CPA License',
+        type: 'License',
+        department: 'Finance',
+        institution: 'AICPA'
     }
 ]
 
