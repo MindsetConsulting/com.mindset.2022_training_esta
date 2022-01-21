@@ -71,14 +71,6 @@ export function EmployeeForm () {
                             onChange={handleAddEmployeeChange}
                         />
                     </FormItem>
-                    <FormItem label={'Start Date'}>
-                        <DatePicker 
-                            style={{ width: '80%'}}
-                            name="startDate"
-                            value={addEmployee.startDate}
-                            onChange={handleStartDateChange}
-                        ></DatePicker>
-                    </FormItem>
                     <FormItem label={'Department'}>
                         <ComboBox 
                             style={{ width: '80%'}}
@@ -89,6 +81,16 @@ export function EmployeeForm () {
                             <ComboBoxItem text="Finance"/>
                         </ComboBox>
                     </FormItem>
+                    <FormItem label={'Title'}>
+                        <Input 
+                            style={{ width: '80%'}}
+                            type={InputType.Text}
+                            placeholder="Title"
+                            name="title"
+                            value={addEmployee.title}
+                            onChange={handleAddEmployeeChange}
+                        />
+                    </FormItem>
                     <FormItem label={'Direct Report'}>
                         <Input 
                             style={{ width: '80%'}}
@@ -98,6 +100,14 @@ export function EmployeeForm () {
                             value={addEmployee.directReport}
                             onChange={handleAddEmployeeChange}
                         />
+                    </FormItem>
+                    <FormItem label={'Start Date'}>
+                        <DatePicker 
+                            style={{ width: '80%'}}
+                            name="startDate"
+                            value={addEmployee.startDate}
+                            onChange={handleStartDateChange}
+                        ></DatePicker>
                     </FormItem>
                     <FormItem label={'Email'}>
                         <Input 

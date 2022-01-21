@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { 
   Label,
   Table,
@@ -19,6 +20,8 @@ import {
 } from "@ui5/webcomponents-react";
 
 export function SkillList() {
+  const navigate = useNavigate();
+
   const skills = useSelector(store => store.skillReducer);
 
   const [searchFilter, setSearchFilter] = useState('');
@@ -35,6 +38,10 @@ export function SkillList() {
 
   const handleTypeFilter = (e) => {
     setTypeFilter({...typeFilter, typeFilter: e.target.value})
+  }
+
+  const handleCreateSkillClick = () => {
+    navigate('/skillform')
   }
 
   return (
@@ -65,14 +72,14 @@ export function SkillList() {
           <ComboBoxItem text="Finance" />
         </ComboBox>
       </FilterGroupItem>
-      <FilterGroupItem>
-        <Button design="Emphasized" style={{ width: '75px'}}>Search</Button>
-      </FilterGroupItem>
     </FilterBar>
     <FlexBox justifyContent="SpaceBetween" style={{ marginLeft: '20px', marginRight: '20px', marginTop: '20px'}}>
       <Title>Skills</Title>
       <FlexBox>
-        <Button design="Transparent">Create</Button>
+        <Button 
+          design="Transparent"
+          onClick={handleCreateSkillClick}
+        >Create</Button>
         <Button design="Transparent">Edit</Button>
         <Button design="Transparent">Copy</Button>
         <Button design="Transparent">Delete</Button>
@@ -94,7 +101,11 @@ export function SkillList() {
       <TableColumn>
         <Label>Accrediting Institution</Label>
       </TableColumn>
-      {skills.filter(item => item.title === searchFilter.searchFilter || item.type === typeFilter.typeFilter || item.department === departmentFilter.depFilter).map(skill =>
+      {skills.filter(item => 
+        item.title === searchFilter.searchFilter || 
+        item.type === typeFilter.typeFilter || 
+        item.department === departmentFilter.depFilter
+      ).map(skill =>
       <TableRow>
         <TableCell>
           <CheckBox/>
