@@ -21,8 +21,13 @@ import {
 export function SkillList() {
   const skills = useSelector(store => store.skillReducer);
 
+  const [searchFilter, setSearchFilter] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
+
+  const handleSearchFilter = (e) => {
+    setSearchFilter({...searchFilter, searchFilter: e.target.value})
+  }
 
   const handleDepartmentFilter = (e) => {
     setDepartmentFilter({...departmentFilter, depFilter: e.target.value})
@@ -36,7 +41,10 @@ export function SkillList() {
     <>
     <FilterBar>
       <FilterGroupItem>
-        <Input placeholder="Search" />
+        <Input 
+          placeholder="Search"
+          onChange={handleSearchFilter} 
+        />
       </FilterGroupItem>
       <FilterGroupItem>
         <ComboBox 
@@ -86,7 +94,7 @@ export function SkillList() {
       <TableColumn>
         <Label>Accrediting Institution</Label>
       </TableColumn>
-      {skills.filter(item => item.department === departmentFilter.depFilter && item.type === typeFilter.typeFilter).map(skill =>
+      {skills.filter(item => item.title === searchFilter.searchFilter || item.type === typeFilter.typeFilter || item.department === departmentFilter.depFilter).map(skill =>
       <TableRow>
         <TableCell>
           <CheckBox/>
