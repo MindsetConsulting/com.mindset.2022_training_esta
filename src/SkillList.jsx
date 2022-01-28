@@ -28,6 +28,7 @@ export function SkillList() {
   const [searchFilter, setSearchFilter] = useState('');
   const [departmentFilter, setDepartmentFilter] = useState('');
   const [typeFilter, setTypeFilter] = useState('');
+  const [selectedSkills, setSelectedSkills] = useState([]);
 
   const handleSearchFilter = (e) => {
     setSearchFilter({...searchFilter, searchFilter: e.target.value})
@@ -43,6 +44,10 @@ export function SkillList() {
 
   const handleCreateSkillClick = () => {
     navigate('/skillform')
+  }
+
+  const handleCheckbox = () => {
+    console.log('Table row id:', );
   }
 
   return (
@@ -89,7 +94,7 @@ export function SkillList() {
     </FlexBox>
     <Table style={{ margin: '20px'}}>
       <TableColumn style={{ width: '3rem'}}>
-        <CheckBox />
+        <CheckBox/>
       </TableColumn>
       <TableColumn style={{ width: '20rem'}}>
         <Label>Skill</Label>
@@ -108,9 +113,9 @@ export function SkillList() {
         item.type === typeFilter.typeFilter || 
         item.department === departmentFilter.depFilter
       ).map(skill =>
-      <TableRow>
+      <TableRow selected='false'>
         <TableCell>
-          <CheckBox/>
+          <CheckBox onChange={handleCheckbox}/>
         </TableCell>
         <TableCell>
           <Label>{skill.title}</Label>

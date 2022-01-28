@@ -17,8 +17,7 @@ import {
   ButtonDesign,
   Title,
   Label,
-  Card,
-  RatingIndicator
+  Card
 } from "@ui5/webcomponents-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -27,22 +26,24 @@ const skillData = [{
   title: 'BS Finance',
   type: 'University Degree',
   institution: 'University of Somewhere',
-  dateAcquired: 'May 2004',
+  yearsExperience: '14',
   renewal: 'none',
-  rating: 5
+  comfortLevel: 'Very'
 }, {
   title: 'SAP Fiori 1',
   type: 'Certification',
   institution: 'SAP',
-  dateAcquired: 'January 2020',
+  yearsExperience: '2',
   renewal: 'January 2022',
-  rating: 2
+  comfortLevel: 'Somewhat'
 }];
 
 export function EmployeeList() {
   const navigate = useNavigate();
 
   const employees = useSelector(store => store.employeeReducer);
+  const skills = useSelector(store => store.skillReducer);
+  const employeeSkills = useSelector(store => store.employeeSkillReducer);
 
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
@@ -192,9 +193,9 @@ export function EmployeeList() {
               </Text>
             </FlexBox>
             <FlexBox style={{ margin: '12px' }}>
-              <Label>Date Acquired:</Label>
+              <Label>Years of Experience:</Label>
               <Text style={{ marginLeft: '2px'}}>
-                {selectedSkill.dateAcquired}
+                {selectedSkill.yearsExperience}
               </Text>
             </FlexBox>
             <FlexBox style={{ margin: '12px' }}>
@@ -204,11 +205,10 @@ export function EmployeeList() {
               </Text>
             </FlexBox>
             <FlexBox style={{ margin: '12px' }}>
-              <Label>Expertise Level:</Label>
-              <RatingIndicator
-                readonly
-                value={selectedSkill.rating}
-              />
+              <Label>Comfort Level:</Label>
+              <Text style={{ marginLeft: '2px'}}>
+                {selectedSkill.comfortLevel}
+              </Text>
             </FlexBox>
           </FlexBox>
 

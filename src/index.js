@@ -12,14 +12,23 @@ import logger from 'redux-logger';
 
 const employees = [
     { 
+        id: 1,
         fullName: 'John Smith',
         department: 'Finance',
         title: 'Director of Finance',
         directReport: 'VP of Finance',
         startDate: 'Jan 1, 2014',
-        email: 'johnsmith@mindsetconsulting.com'
+        email: 'johnsmith@mindsetconsulting.com',
+        assignedSkills: [
+            {
+                skillId: 1,
+                dateAcquired: '1/1/01',
+                comfortLevel: 'Advanced'
+            }
+        ]
     },
     { 
+        id: 2,
         fullName: 'Jane Smith',
         department: 'DevOps',
         title: 'Junior Developer',
@@ -31,24 +40,32 @@ const employees = [
 
 const skills = [
     {
+        id: 1,
+        selected: false,
         title: 'BS Finance',
         type: 'University Degree',
         department: 'Finance',
         institution: 'University of Someplace'
     },
     {
+        id: 2,
+        selected: false,
         title: 'SAP Fiori 1',
         type: 'SAP Certification',
         department: 'DevOps',
         institution: 'SAP'
     },
     {
+        id: 3,
+        selected: false,
         title: 'Amazon Web Services',
         type: 'AWS Certification',
         department: 'DevOps',
         institution: 'Amazon'
     },
     {
+        id: 4,
+        selected: false,
         title: 'CPA License',
         type: 'License',
         department: 'Finance',
@@ -80,8 +97,18 @@ const skillReducer = (state = skills, action) => {
     if (action.type === 'ADD_SKILL') {
         return [...state, action.payload];
     }
+    // if (action.type === 'DELETE_SKILL') {
+    //     return [...state, action.payload];
+    // }
     return state;
 };
+
+// const employeeSkillReducer = (state = employees.assignedSkills, action) => {
+//     if (action.type === 'ASSIGN_SKILL') {
+//         return [...state, action.payload];
+//     }
+//     return state;
+// }
 
 const departmentReducer = (state = departments, action) => {
     return state;
@@ -93,6 +120,7 @@ const storeInstances = createStore(
         employeeReducer,
         skillReducer,
         departmentReducer,
+        // employeeSkillReducer,
     }),
     applyMiddleware(
         logger

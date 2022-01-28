@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import "@ui5/webcomponents/dist/features/InputElementsFormSupport.js";
 import { 
@@ -15,7 +15,6 @@ import {
     ComboBox,
     ComboBoxItem
 } from "@ui5/webcomponents-react";
-import { useSelector } from "react-redux";
 
 export function EmployeeForm () {
     const navigate = useNavigate();
@@ -62,7 +61,8 @@ export function EmployeeForm () {
         <FlexBox>
             <Form 
                 titleText={"Add New Employee"} 
-                style={{ marginLeft: '150px', marginRight: '350px', marginTop: '50px', paddingBottom: '100px'}}>
+                style={{ marginLeft: '150px', marginRight: '350px', marginTop: '50px', paddingBottom: '100px'}}
+            >
                 <FormGroup>
                     <FormItem label={'Full Name'}>
                         <Input 
