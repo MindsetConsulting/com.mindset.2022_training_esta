@@ -59,9 +59,13 @@ export function EmployeeList() {
     setLayout(FCLLayout.EndColumnFullScreen);
   };
 
-  const handleAddButtonClick = () => {
+  const handleAddEmployeeClick = () => {
     navigate('/employeeform');
   };
+
+  const handleAddSkillClick = () => {
+    console.log('add skill button working');
+  }
 
   return (
     <>
@@ -76,7 +80,7 @@ export function EmployeeList() {
           <Button
             icon="add"
             design={ButtonDesign.Transparent}
-            onClick={handleAddButtonClick}
+            onClick={handleAddEmployeeClick}
           />
         </Toolbar>
         <List 
@@ -97,6 +101,7 @@ export function EmployeeList() {
           <Button
             icon="add"
             design={ButtonDesign.Transparent}
+            onClick={handleAddSkillClick}
           />
           <Button 
             icon="decline"

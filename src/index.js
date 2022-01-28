@@ -48,9 +48,9 @@ const employees = [
         email: 'janesmith@mindsetconsulting.com',
         assignedSkills: [
             {
-                skillId: 1,
-                skillTitle: 'BS Finance',
-                dateAcquired: '1/1/01',
+                skillId: 3,
+                skillTitle: 'AWS Certification',
+                dateAcquired: '11/11/11',
                 comfortLevel: 'Advanced'
             }
         ]
