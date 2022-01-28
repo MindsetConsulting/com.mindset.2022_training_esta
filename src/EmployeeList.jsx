@@ -42,8 +42,8 @@ export function EmployeeList() {
   const navigate = useNavigate();
 
   const employees = useSelector(store => store.employeeReducer);
-  const skills = useSelector(store => store.skillReducer);
-  const employeeSkills = useSelector(store => store.employeeSkillReducer);
+  // const skills = useSelector(store => store.skillReducer);
+  // const employeeSkills = useSelector(store => store.employeeSkillReducer);
 
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
@@ -56,7 +56,7 @@ export function EmployeeList() {
 
   const onMiddleColumnClick = e => {
     setSelectedSkill(skillData.find(item => item.title === e.detail.item.dataset.title));
-    setLayout(FCLLayout.ThreeColumnsEndExpanded);
+    setLayout(FCLLayout.EndColumnFullScreen);
   };
 
   const handleAddButtonClick = () => {
@@ -130,6 +130,20 @@ export function EmployeeList() {
             </FlexBox>
 
             <FlexBox>
+              <Label>Role:</Label>
+              <Text style={{ marginLeft: '2px'}}>
+                {selectedEmployee.role}
+              </Text>
+            </FlexBox>
+
+            <FlexBox>
+              <Label>Industries:</Label>
+              <Text style={{ marginLeft: '2px'}}>
+                {selectedEmployee.industries}
+              </Text>
+            </FlexBox>
+
+            <FlexBox>
               <Label>Direct Report:</Label>
               <Text style={{ marginLeft: '2px' }}>
                 {selectedEmployee.directReport}
@@ -155,9 +169,9 @@ export function EmployeeList() {
         headerText="Skills" 
         onItemClick={onMiddleColumnClick}
       >
-        {skillData.map(item => 
-          <StandardListItem data-title={item.title}>
-            {item.title}
+        {selectedEmployee.assignedSkills.map(item => 
+          <StandardListItem>
+            {item.skillTitle}
           </StandardListItem>)}
       </List>
       </>} 

@@ -16,15 +16,24 @@ const employees = [
         fullName: 'John Smith',
         department: 'Finance',
         title: 'Director of Finance',
+        role: 'Director of Finance',
+        industries: 'Finance',
         directReport: 'VP of Finance',
         startDate: 'Jan 1, 2014',
         email: 'johnsmith@mindsetconsulting.com',
         assignedSkills: [
             {
                 skillId: 1,
+                skillTitle: 'BS Finance',
                 dateAcquired: '1/1/01',
                 comfortLevel: 'Advanced'
-            }
+            },
+            {
+                skillId: 2,
+                skillTitle: 'Finance Certificate',
+                dateAcquired: '2/2/02',
+                comfortLevel: 'Intermediate'
+            },
         ]
     },
     { 
@@ -32,9 +41,19 @@ const employees = [
         fullName: 'Jane Smith',
         department: 'DevOps',
         title: 'Junior Developer',
+        role: 'UX Developer',
+        industries: 'Manufacturing',
         directReport: 'Director of DevOps',
         startDate: 'Jan 1, 2020',
-        email: 'janesmith@mindsetconsulting.com'
+        email: 'janesmith@mindsetconsulting.com',
+        assignedSkills: [
+            {
+                skillId: 1,
+                skillTitle: 'BS Finance',
+                dateAcquired: '1/1/01',
+                comfortLevel: 'Advanced'
+            }
+        ]
     }
 ]
 
