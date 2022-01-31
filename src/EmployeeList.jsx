@@ -18,7 +18,10 @@ import {
   Title,
   Label,
   Card,
-  Dialog
+  Dialog,
+  FilterBar,
+  FilterGroupItem,
+  Input
 } from "@ui5/webcomponents-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -45,6 +48,7 @@ export function EmployeeList() {
 
   const employees = useSelector(store => store.employeeReducer);
   const skills = useSelector(store => store.skillReducer);
+  const [searchFilter, setSearchFilter] = useState('');
 
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
@@ -71,6 +75,10 @@ export function EmployeeList() {
 
   const handleClose = () => {
     dialogRef.current.close();
+  }
+
+  const handleSearchFilter = (e) => {
+    setSearchFilter({...searchFilter, searchFilter: e.target.value})
   }
 
   return (
@@ -115,7 +123,21 @@ export function EmployeeList() {
             footer={ 
               <Button onClick={handleClose}>Close</Button>
             }
-          />
+          >
+            <FilterBar>
+              <FilterGroupItem label="Input">
+                <Input 
+                  placeholder="Search All Skills"
+                  onChange={handleSearchFilter}
+                />
+              </FilterGroupItem>
+            </FilterBar>
+            <List>
+              {skills.map(skill =>
+                <StandardListItem>{skill.title}</StandardListItem>
+              )}
+            </List>
+          </Dialog>
           <Button 
             icon="decline"
             design={ButtonDesign.Transparent} 
