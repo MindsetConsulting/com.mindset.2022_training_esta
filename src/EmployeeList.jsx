@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { 
   FlexibleColumnLayout, 
   FCLLayout,
@@ -17,7 +17,8 @@ import {
   ButtonDesign,
   Title,
   Label,
-  Card
+  Card,
+  Dialog
 } from "@ui5/webcomponents-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -40,10 +41,10 @@ const skillData = [{
 
 export function EmployeeList() {
   const navigate = useNavigate();
+  const dialogRef = useRef(null);
 
   const employees = useSelector(store => store.employeeReducer);
-  // const skills = useSelector(store => store.skillReducer);
-  // const employeeSkills = useSelector(store => store.employeeSkillReducer);
+  const skills = useSelector(store => store.skillReducer);
 
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
@@ -65,6 +66,11 @@ export function EmployeeList() {
 
   const handleAddSkillClick = () => {
     console.log('add skill button working');
+    dialogRef.current.show();
+  }
+
+  const handleClose = () => {
+    dialogRef.current.close();
   }
 
   return (
@@ -102,6 +108,13 @@ export function EmployeeList() {
             icon="add"
             design={ButtonDesign.Transparent}
             onClick={handleAddSkillClick}
+          />
+          <Dialog 
+            ref={dialogRef}
+            headerText="Assign Skill to Employee"
+            footer={ 
+              <Button onClick={handleClose}>Close</Button>
+            }
           />
           <Button 
             icon="decline"
