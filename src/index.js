@@ -25,13 +25,19 @@ const employees = [
             {
                 skillId: 1,
                 skillTitle: 'BS Finance',
+                skillType: 'University Degree',
+                institution: 'University of Money',
                 dateAcquired: '1/1/01',
+                renewal: false,
                 comfortLevel: 'Advanced'
             },
             {
                 skillId: 2,
                 skillTitle: 'Finance Certificate',
+                skillType: 'Certification',
+                institution: 'Finance Management Co.',
                 dateAcquired: '2/2/02',
+                renewal: true,
                 comfortLevel: 'Intermediate'
             },
         ]

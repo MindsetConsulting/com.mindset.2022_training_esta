@@ -26,21 +26,6 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const skillData = [{
-  title: 'BS Finance',
-  type: 'University Degree',
-  institution: 'University of Somewhere',
-  yearsExperience: '14',
-  renewal: 'none',
-  comfortLevel: 'Very'
-}, {
-  title: 'SAP Fiori 1',
-  type: 'Certification',
-  institution: 'SAP',
-  yearsExperience: '2',
-  renewal: 'January 2022',
-  comfortLevel: 'Somewhat'
-}];
 
 export function EmployeeList() {
   const navigate = useNavigate();
@@ -48,11 +33,11 @@ export function EmployeeList() {
 
   const employees = useSelector(store => store.employeeReducer);
   const skills = useSelector(store => store.skillReducer);
-  const [searchFilter, setSearchFilter] = useState('');
 
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
-  const [selectedSkill, setSelectedSkill] = useState(skillData[0]);
+  const [selectedSkill, setSelectedSkill] = useState(employees[0].assignedSkills[0]);
+  const [searchFilter, setSearchFilter] = useState('');
 
   const onStartColumnClick = e => {
     setSelectedEmployee(employees.find(item => item.fullName === e.detail.item.dataset.fullname));
@@ -60,7 +45,7 @@ export function EmployeeList() {
   };
 
   const onMiddleColumnClick = e => {
-    setSelectedSkill(skillData.find(item => item.title === e.detail.item.dataset.title));
+    setSelectedSkill(selectedEmployee.assignedSkills.find(item => item.skillTitle === e.detail.item.dataset.skilltitle));
     setLayout(FCLLayout.EndColumnFullScreen);
   };
 
@@ -210,7 +195,7 @@ export function EmployeeList() {
         onItemClick={onMiddleColumnClick}
       >
         {selectedEmployee.assignedSkills.map(item => 
-          <StandardListItem>
+          <StandardListItem data-skilltitle={item.skillTitle}>
             {item.skillTitle}
           </StandardListItem>)}
       </List>
@@ -218,7 +203,7 @@ export function EmployeeList() {
       
       endColumn={<>
         <Toolbar design={ToolbarDesign.Solid}>
-          <Title style={{ marginLeft: '12px' }}>{selectedSkill.title}</Title>
+          <Title style={{ marginLeft: '12px' }}>{selectedSkill.skillTitle}</Title>
           <ToolbarSpacer />
           <Button 
             icon="decline" 
@@ -228,7 +213,7 @@ export function EmployeeList() {
         </Toolbar>
         <Card 
           avatar={<Avatar icon="person-placeholder" />} 
-          titleText={selectedSkill.title}
+          titleText={selectedSkill.skillTitle}
         >
           <FlexBox
             direction={FlexBoxDirection.Column} 
@@ -237,7 +222,7 @@ export function EmployeeList() {
             <FlexBox style={{ margin: '12px' }}>
               <Label>Type of Certification:</Label>
               <Text style={{ marginLeft: '2px'}}>
-                {selectedSkill.type}
+                {selectedSkill.skillType}
               </Text>
             </FlexBox>
             <FlexBox style={{ margin: '12px' }}>
@@ -247,9 +232,9 @@ export function EmployeeList() {
               </Text>
             </FlexBox>
             <FlexBox style={{ margin: '12px' }}>
-              <Label>Years of Experience:</Label>
+              <Label>Date Acquired:</Label>
               <Text style={{ marginLeft: '2px'}}>
-                {selectedSkill.yearsExperience}
+                {selectedSkill.dateAcquired}
               </Text>
             </FlexBox>
             <FlexBox style={{ margin: '12px' }}>
@@ -265,7 +250,6 @@ export function EmployeeList() {
               </Text>
             </FlexBox>
           </FlexBox>
-
         </Card>
       </>} />;
     </>
