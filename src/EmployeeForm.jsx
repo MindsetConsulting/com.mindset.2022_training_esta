@@ -21,11 +21,16 @@ export function EmployeeForm () {
     const dispatch = useDispatch();
 
     let newEmployee = {
+        id: 0,
         fullName: '',
+        department: '',
+        title: '',
+        role: '',
+        industries: '',
+        directReport: '',
         startDate: '', 
-        department: '', 
-        directReport: '',  
-        email: ''
+        email: '',
+        assignedSkills: []
     }
 
     const departments = useSelector(store => store.departmentReducer);
@@ -64,6 +69,16 @@ export function EmployeeForm () {
                 style={{ marginLeft: '150px', marginRight: '350px', marginTop: '50px', paddingBottom: '100px'}}
             >
                 <FormGroup>
+                    <FormItem label={'ID'}>
+                        <Input 
+                            style={{ width: '80%'}}
+                            type={InputType.Number}
+                            placeholder="ID"
+                            name="id"
+                            value={addEmployee.id}
+                            onChange={handleAddEmployeeChange}
+                        />
+                    </FormItem>
                     <FormItem label={'Full Name'}>
                         <Input 
                             style={{ width: '80%'}}
@@ -92,6 +107,26 @@ export function EmployeeForm () {
                             placeholder="Title"
                             name="title"
                             value={addEmployee.title}
+                            onChange={handleAddEmployeeChange}
+                        />
+                    </FormItem>
+                    <FormItem label={'Role'}>
+                        <Input 
+                            style={{ width: '80%'}}
+                            type={InputType.Text}
+                            placeholder="Role"
+                            name="role"
+                            value={addEmployee.role}
+                            onChange={handleAddEmployeeChange}
+                        />
+                    </FormItem>
+                    <FormItem label={'Industries'}>
+                        <Input 
+                            style={{ width: '80%'}}
+                            type={InputType.Text}
+                            placeholder="Industries"
+                            name="industries"
+                            value={addEmployee.industries}
                             onChange={handleAddEmployeeChange}
                         />
                     </FormItem>

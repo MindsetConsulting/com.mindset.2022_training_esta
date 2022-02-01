@@ -28,7 +28,7 @@ const employees = [
                 skillType: 'University Degree',
                 institution: 'University of Money',
                 dateAcquired: '1/1/01',
-                renewal: false,
+                renewal: 'n/a',
                 comfortLevel: 'Advanced'
             },
             {
@@ -37,7 +37,7 @@ const employees = [
                 skillType: 'Certification',
                 institution: 'Finance Management Co.',
                 dateAcquired: '2/2/02',
-                renewal: true,
+                renewal: 'Every 2 years',
                 comfortLevel: 'Intermediate'
             },
         ]
@@ -56,7 +56,10 @@ const employees = [
             {
                 skillId: 3,
                 skillTitle: 'AWS Certification',
-                dateAcquired: '11/11/11',
+                skillType: 'Certification',
+                institution: 'Amazon',
+                dateAcquired: '2/2/02',
+                renewal: 'Every 2 months',
                 comfortLevel: 'Advanced'
             }
         ]
