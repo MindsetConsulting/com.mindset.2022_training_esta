@@ -131,13 +131,6 @@ const skillReducer = (state = skills, action) => {
     return state;
 };
 
-// const employeeSkillReducer = (state = employees.assignedSkills, action) => {
-//     if (action.type === 'ASSIGN_SKILL') {
-//         return [...state, action.payload];
-//     }
-//     return state;
-// }
-
 const departmentReducer = (state = departments, action) => {
     return state;
 };
@@ -148,7 +141,6 @@ const storeInstances = createStore(
         employeeReducer,
         skillReducer,
         departmentReducer,
-        // employeeSkillReducer,
     }),
     applyMiddleware(
         logger

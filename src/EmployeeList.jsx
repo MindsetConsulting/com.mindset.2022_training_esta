@@ -37,6 +37,7 @@ export function EmployeeList() {
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
   const [selectedSkill, setSelectedSkill] = useState(employees[0].assignedSkills[0]);
+  const [skillToAssign, setSkillToAssign] = useState('');
   const [searchFilter, setSearchFilter] = useState('');
 
   const onStartColumnClick = e => {
@@ -49,6 +50,11 @@ export function EmployeeList() {
     setLayout(FCLLayout.EndColumnFullScreen);
   };
 
+  const selectSkillToAssign = e => {
+    setSkillToAssign(skills.find(item => item.skillTitle === e.detail.selectedItems[0].dataset.skilltitle));
+    console.log(skillToAssign);
+  };
+
   const handleAddEmployeeClick = () => {
     navigate('/employeeform');
   };
@@ -59,10 +65,6 @@ export function EmployeeList() {
 
   const handleClose = () => {
     dialogRef.current.close();
-  };
-
-  const selectSkillToAssign = () => {
-    console.log('Skill selected!!');
   };
 
   const handleSearchFilter = (e) => {
@@ -119,7 +121,11 @@ export function EmployeeList() {
             }
           >
               {skills.map(skill =>
-                <StandardListItem key={skill.skillTitle}>{skill.title}</StandardListItem>
+                <StandardListItem 
+                  description={skill.department} 
+                  data-skilltitle={skill.title}>
+                    {skill.title}
+                </StandardListItem>
               )}
           </SelectDialog>
           <Button 
@@ -200,6 +206,7 @@ export function EmployeeList() {
       </List>
       <Button
         design="Negative"
+        style={{ marginTop: '100px'}}
         onClick={handleDeleteEmployeeClick}
       >DELETE EMPLOYEE</Button>
       </>} 
