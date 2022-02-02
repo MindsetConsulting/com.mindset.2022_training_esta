@@ -19,6 +19,9 @@ import {
   Label,
   Card,
   SelectDialog,
+  FilterBar,
+  FilterGroupItem,
+  Input
 } from "@ui5/webcomponents-react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -52,15 +55,19 @@ export function EmployeeList() {
 
   const handleAddSkillClick = () => {
     dialogRef.current.show();
-  }
+  };
 
   const handleClose = () => {
     dialogRef.current.close();
-  }
+  };
+
+  const selectSkillToAssign = () => {
+    console.log('Skill selected!!');
+  };
 
   const handleSearchFilter = (e) => {
     setSearchFilter({...searchFilter, searchFilter: e.target.value})
-  }
+  };
 
   const handleDeleteEmployeeClick = () => {
     alert('Deleting Employee!!!')
@@ -106,6 +113,7 @@ export function EmployeeList() {
             ref={dialogRef}
             headerText="Assign Skill to Employee"
             mode="SingleSelect"
+            onConfirm={selectSkillToAssign}
             footer={ 
               <Button onClick={handleClose}>Close</Button>
             }
