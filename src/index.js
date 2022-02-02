@@ -12,7 +12,7 @@ import logger from 'redux-logger';
 
 const employees = [
     { 
-        id: 1,
+        id: 0,
         fullName: 'John Smith',
         department: 'Finance',
         title: 'Director of Finance',
@@ -43,7 +43,7 @@ const employees = [
         ]
     },
     { 
-        id: 2,
+        id: 1,
         fullName: 'Jane Smith',
         department: 'DevOps',
         title: 'Junior Developer',
