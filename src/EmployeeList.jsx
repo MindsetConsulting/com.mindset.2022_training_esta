@@ -1,5 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import { 
   FlexibleColumnLayout, 
   FCLLayout,
@@ -23,8 +25,6 @@ import {
   FilterGroupItem,
   Input
 } from "@ui5/webcomponents-react";
-import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
 
 
 export function EmployeeList() {
@@ -67,13 +67,19 @@ export function EmployeeList() {
     dialogRef.current.close();
   };
 
-  const handleSearchFilter = (e) => {
-    setSearchFilter({...searchFilter, searchFilter: e.target.value})
+  const handleEditEmployeeClick = () => {
+    alert('Editing Employee!!!')
   };
 
   const handleDeleteEmployeeClick = () => {
     alert('Deleting Employee!!!')
-  }
+  };
+
+  const handleSearchFilter = (e) => {
+    setSearchFilter({...searchFilter, searchFilter: e.target.value})
+  };
+
+  
 
   return (
     <>
@@ -111,10 +117,21 @@ export function EmployeeList() {
             design={ButtonDesign.Transparent}
             onClick={handleAddSkillClick}
           />
+          <Button
+            icon="sap-icon://edit"
+            design={ButtonDesign.Transparent}
+            onClick={handleEditEmployeeClick}
+          />
+          <Button
+            icon="sap-icon://delete"
+            design={ButtonDesign.Transparent}
+            onClick={handleDeleteEmployeeClick}
+          />
           <SelectDialog 
             ref={dialogRef}
             headerText="Assign Skill to Employee"
             mode="SingleSelect"
+            onSearch={handleSearchFilter}
             onConfirm={selectSkillToAssign}
             footer={ 
               <Button onClick={handleClose}>Close</Button>
@@ -204,11 +221,6 @@ export function EmployeeList() {
             {item.skillTitle}
           </StandardListItem>)}
       </List>
-      <Button
-        design="Negative"
-        style={{ marginTop: '100px'}}
-        onClick={handleDeleteEmployeeClick}
-      >DELETE EMPLOYEE</Button>
       </>} 
       
       endColumn={<>
