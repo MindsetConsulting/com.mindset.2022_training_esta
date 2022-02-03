@@ -53,8 +53,7 @@ export function EmployeeList() {
   };
 
   const selectSkillToAssign = e => {
-    setSkillToAssign(skills.find(item => item.skillTitle === e.detail.selectedItems[0].dataset.skilltitle));
-    console.log(skillToAssign);
+    selectedEmployee.assignedSkills.push(e.detail.selectedItems[0].dataset.skilltitle);
   };
 
   const handleAddEmployeeClick = () => {
@@ -79,7 +78,6 @@ export function EmployeeList() {
       payload: selectedEmployee.id
     });
     setLayout(FCLLayout.OneColumn);
-
   };
 
   const handleEditSkillClick = () => {
@@ -87,7 +85,11 @@ export function EmployeeList() {
   };
 
   const handleRemoveSkillClick = () => {
-    alert('Removing Skill from Employee!!!')
+    dispatch({
+      type: 'REMOVE_ASSIGNED_SKILL',
+      payload: selectedSkill.id
+    });
+    console.log('ID is', selectedSkill.id);
   };
 
   const handleSearchFilter = (e) => {

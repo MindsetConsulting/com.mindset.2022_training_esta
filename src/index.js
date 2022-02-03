@@ -23,7 +23,7 @@ const employees = [
         email: 'johnsmith@mindsetconsulting.com',
         assignedSkills: [
             {
-                skillId: 1,
+                id: 0,
                 skillTitle: 'BS Finance',
                 skillType: 'University Degree',
                 institution: 'University of Money',
@@ -32,7 +32,7 @@ const employees = [
                 comfortLevel: 'Advanced'
             },
             {
-                skillId: 2,
+                id: 1,
                 skillTitle: 'Finance Certificate',
                 skillType: 'Certification',
                 institution: 'Finance Management Co.',
@@ -54,7 +54,7 @@ const employees = [
         email: 'janesmith@mindsetconsulting.com',
         assignedSkills: [
             {
-                skillId: 3,
+                id: 2,
                 skillTitle: 'AWS Certification',
                 skillType: 'Certification',
                 institution: 'Amazon',
@@ -68,32 +68,28 @@ const employees = [
 
 const skills = [
     {
-        id: 1,
-        selected: false,
+        id: 0,
         title: 'BS Finance',
         type: 'University Degree',
         department: 'Finance',
         institution: 'University of Someplace'
     },
     {
-        id: 2,
-        selected: false,
+        id: 1,
         title: 'SAP Fiori 1',
         type: 'SAP Certification',
         department: 'DevOps',
         institution: 'SAP'
     },
     {
-        id: 3,
-        selected: false,
-        title: 'Amazon Web Services',
-        type: 'AWS Certification',
+        id: 2,
+        title: 'AWS Certification',
+        type: 'Certification',
         department: 'DevOps',
         institution: 'Amazon'
     },
     {
-        id: 4,
-        selected: false,
+        id: 3,
         title: 'CPA License',
         type: 'License',
         department: 'Finance',
@@ -120,19 +116,22 @@ const employeeReducer = (state = employees, action) => {
             return [...state, action.payload];
         case 'DELETE_EMPLOYEE':
             return state.filter(employee => employee.id !== action.payload);
+        case 'REMOVE_ASSIGNED_SKILL':
+            return state.filter(employee => employee.assignedSkills.id !== action.payload)
         default:
             return state;
     }
 };
 
 const skillReducer = (state = skills, action) => {
-    if (action.type === 'ADD_SKILL') {
-        return [...state, action.payload];
+    switch (action.type) {
+        case 'ADD_SKILL':
+            return [...state, action.payload];
+        case 'DELETE_SKILL':
+            return state.filter(skill => skill.id !== action.payload);
+        default:
+            return state;
     }
-    // if (action.type === 'DELETE_SKILL') {
-    //     return [...state, action.payload];
-    // }
-    return state;
 };
 
 const departmentReducer = (state = departments, action) => {
