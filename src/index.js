@@ -115,10 +115,14 @@ const departments = [
 
 
 const employeeReducer = (state = employees, action) => {
-    if (action.type === 'ADD_EMPLOYEE') {
-        return [...state, action.payload];
+    switch (action.type) {
+        case 'ADD_EMPLOYEE':
+            return [...state, action.payload];
+        case 'DELETE_EMPLOYEE':
+            return state.filter(employee => employee.id !== action.payload);
+        default:
+            return state;
     }
-    return state;
 };
 
 const skillReducer = (state = skills, action) => {

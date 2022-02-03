@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { 
   FlexibleColumnLayout, 
   FCLLayout,
@@ -25,10 +25,12 @@ import {
   FilterGroupItem,
   Input
 } from "@ui5/webcomponents-react";
+import "@ui5/webcomponents-icons/dist/AllIcons.js"
 
 
 export function EmployeeList() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const dialogRef = useRef(null);
 
   const employees = useSelector(store => store.employeeReducer);
@@ -72,7 +74,20 @@ export function EmployeeList() {
   };
 
   const handleDeleteEmployeeClick = () => {
-    alert('Deleting Employee!!!')
+    dispatch({
+      type: 'DELETE_EMPLOYEE',
+      payload: selectedEmployee.id
+    });
+    setLayout(FCLLayout.OneColumn);
+
+  };
+
+  const handleEditSkillClick = () => {
+    alert('Editing Skill!!!')
+  };
+
+  const handleRemoveSkillClick = () => {
+    alert('Removing Skill from Employee!!!')
   };
 
   const handleSearchFilter = (e) => {
@@ -227,6 +242,16 @@ export function EmployeeList() {
         <Toolbar design={ToolbarDesign.Solid}>
           <Title style={{ marginLeft: '12px' }}>{selectedSkill.skillTitle}</Title>
           <ToolbarSpacer />
+          <Button
+            icon="sap-icon://edit"
+            design={ButtonDesign.Transparent}
+            onClick={handleEditSkillClick}
+          />
+          <Button
+            icon="sap-icon://delete"
+            design={ButtonDesign.Transparent}
+            onClick={handleRemoveSkillClick}
+          />
           <Button 
             icon="decline" 
             design={ButtonDesign.Transparent} 
