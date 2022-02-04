@@ -53,7 +53,8 @@ export function EmployeeList() {
   };
 
   const selectSkillToAssign = e => {
-    selectedEmployee.assignedSkills.push(e.detail.selectedItems[0].dataset.skilltitle);
+    selectedEmployee.assignedSkills.push(e.detail.selectedItems[0].dataset.skill);
+    console.log(selectedEmployee.assignedSkills);
   };
 
   const handleAddEmployeeClick = () => {
@@ -157,7 +158,13 @@ export function EmployeeList() {
               {skills.map(skill =>
                 <StandardListItem 
                   description={skill.department} 
-                  data-skilltitle={skill.title}>
+                  data-skill={{
+                    skillId: skill.id,
+                    skillTitle: skill.title,
+                    skillType: skill.type,
+                    skillDepartment: skill.department,
+                    skillInstitution: skill.institution
+                  }}>
                     {skill.title}
                 </StandardListItem>
               )}
