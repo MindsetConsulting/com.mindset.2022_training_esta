@@ -53,8 +53,12 @@ export function EmployeeList() {
   };
 
   const selectSkillToAssign = e => {
-    selectedEmployee.assignedSkills.push(e.detail.selectedItems[0].dataset.skill);
-    console.log(selectedEmployee.assignedSkills);
+    const assignedSkill = {
+      id: e.detail.selectedItems[0].dataset.skillid,
+      skillTitle: e.detail.selectedItems[0].dataset.skilltitle,
+    }
+    selectedEmployee.assignedSkills.push(assignedSkill);
+    console.log('Assigned skills are:', selectedEmployee.assignedSkills);
   };
 
   const handleAddEmployeeClick = () => {
@@ -88,8 +92,10 @@ export function EmployeeList() {
   const handleRemoveSkillClick = () => {
     dispatch({
       type: 'REMOVE_ASSIGNED_SKILL',
-      payload: selectedSkill.id
-    });
+      payload: {
+        selectedEmployeeId: selectedEmployee.id,
+        selectedSkillId: selectedSkill.id
+    }});
     console.log('ID is', selectedSkill.id);
   };
 
@@ -158,13 +164,8 @@ export function EmployeeList() {
               {skills.map(skill =>
                 <StandardListItem 
                   description={skill.department} 
-                  data-skill={{
-                    skillId: skill.id,
-                    skillTitle: skill.title,
-                    skillType: skill.type,
-                    skillDepartment: skill.department,
-                    skillInstitution: skill.institution
-                  }}>
+                  data-skillid={skill.id}
+                  data-skilltitle={skill.title}>
                     {skill.title}
                 </StandardListItem>
               )}
