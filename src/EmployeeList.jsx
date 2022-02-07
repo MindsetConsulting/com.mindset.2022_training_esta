@@ -35,11 +35,11 @@ export function EmployeeList() {
 
   const employees = useSelector(store => store.employeeReducer);
   const skills = useSelector(store => store.skillReducer);
+  const skillToAssign = useSelector(store => store.skillToAssignReducer);
 
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
   const [selectedSkill, setSelectedSkill] = useState(employees[0].assignedSkills[0]);
-  const [skillToAssign, setSkillToAssign] = useState('');
   const [searchFilter, setSearchFilter] = useState('');
 
   const onStartColumnClick = e => {
@@ -59,8 +59,9 @@ export function EmployeeList() {
       skillType: e.detail.selectedItems[0].dataset.skilltype,
       institution: e.detail.selectedItems[0].dataset.institution,
     }
-    selectedEmployee.assignedSkills.push(assignedSkill);
-    console.log('Assigned skills are:', selectedEmployee.assignedSkills);
+    // selectedEmployee.assignedSkills.push(assignedSkill);
+    skillToAssign.push(assignedSkill);
+    console.log('Assigned skill is:', assignedSkill);
   };
 
   const handleAddEmployeeClick = () => {
