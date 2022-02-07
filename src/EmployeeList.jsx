@@ -62,6 +62,7 @@ export function EmployeeList() {
     // selectedEmployee.assignedSkills.push(assignedSkill);
     skillToAssign.push(assignedSkill);
     console.log('Assigned skill is:', assignedSkill);
+    navigate('/assignskill');
   };
 
   const handleAddEmployeeClick = () => {
