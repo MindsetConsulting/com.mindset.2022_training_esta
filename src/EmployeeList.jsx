@@ -56,6 +56,8 @@ export function EmployeeList() {
     const assignedSkill = {
       id: e.detail.selectedItems[0].dataset.skillid,
       skillTitle: e.detail.selectedItems[0].dataset.skilltitle,
+      skillType: e.detail.selectedItems[0].dataset.skilltype,
+      institution: e.detail.selectedItems[0].dataset.institution,
     }
     selectedEmployee.assignedSkills.push(assignedSkill);
     console.log('Assigned skills are:', selectedEmployee.assignedSkills);
@@ -165,7 +167,10 @@ export function EmployeeList() {
                 <StandardListItem 
                   description={skill.department} 
                   data-skillid={skill.id}
-                  data-skilltitle={skill.title}>
+                  data-skilltitle={skill.title}
+                  data-skilltype={skill.type}
+                  data-institution={skill.institution}
+                >
                     {skill.title}
                 </StandardListItem>
               )}

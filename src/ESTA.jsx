@@ -5,6 +5,7 @@ import { EmployeeList } from "./EmployeeList";
 import { SkillList } from "./SkillList";
 import { EmployeeForm } from "./EmployeeForm";
 import { SkillForm } from "./SkillForm";
+import { AssignedSkillForm } from "./AssignedSkillForm";
 import { Avatar, ShellBar, StandardListItem } from "@ui5/webcomponents-react";
 import "@ui5/webcomponents-icons/dist/add.js";
 
@@ -45,6 +46,7 @@ export function ESTA() {
             <Route path="/employeeform" element={<EmployeeForm />} />
             <Route path="/skilllist" element={<SkillList />} />
             <Route path="/skillform" element={<SkillForm />} />
+            <Route path="/assignskill" element={<AssignedSkillForm />} />
             <Route path="/" element={<Navigate replace to="/dashboard" />} />
           </Routes>
         </>
