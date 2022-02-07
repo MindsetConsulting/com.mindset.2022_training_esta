@@ -22,13 +22,13 @@ export function AssignedSkillForm () {
     const skillToAssign = useSelector(store => store.skillToAssignReducer);
 
     const handleCancelButtonClick = () => {
+        skillToAssign.pop(0);
         navigate('/employeelist');
     };
     
     const handleAssignSkillClick = () => {
         alert('assigned');
         console.log(skillToAssign);
-        skillToAssign.pop(0);
     }
 
     return (

@@ -99,6 +99,8 @@ const skills = [
 
 const skillToAssign = [];
 
+const selectedEmployee = [];
+
 const departments = [
     {
         name: 'DevOps'
@@ -146,6 +148,15 @@ const skillToAssignReducer = (state = skillToAssign, action) => {
     }
 };
 
+const selectedEmployeeReducer = (state = selectedEmployee, action) => {
+    switch (action.type) {
+        case 'SELECT_SKILL_TO_ASSIGN':
+            return [...state, action.payload];
+        default:
+            return state;
+    }
+};
+
 const departmentReducer = (state = departments, action) => {
     return state;
 };
@@ -157,6 +168,7 @@ const storeInstances = createStore(
         skillReducer,
         departmentReducer,
         skillToAssignReducer,
+        selectedEmployeeReducer,
     }),
     applyMiddleware(
         logger

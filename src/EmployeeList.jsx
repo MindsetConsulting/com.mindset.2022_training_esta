@@ -36,6 +36,7 @@ export function EmployeeList() {
   const employees = useSelector(store => store.employeeReducer);
   const skills = useSelector(store => store.skillReducer);
   const skillToAssign = useSelector(store => store.skillToAssignReducer);
+  const selectedEmployeeList = useSelector(store => store.selectedEmployeeReducer);
 
   const [layout, setLayout] = useState(FCLLayout.OneColumn);
   const [selectedEmployee, setSelectedEmployee] = useState(employees[0]);
@@ -44,6 +45,8 @@ export function EmployeeList() {
 
   const onStartColumnClick = e => {
     setSelectedEmployee(employees.find(item => item.fullName === e.detail.item.dataset.fullname));
+    selectedEmployeeList.push(selectedEmployee);
+    console.log(selectedEmployeeList);
     setLayout(FCLLayout.TwoColumnsMidExpanded);
   };
 
@@ -76,6 +79,11 @@ export function EmployeeList() {
   const handleClose = () => {
     dialogRef.current.close();
   };
+
+  const closeEmployeeClick = () => {
+    selectedEmployeeList.pop(0);
+    setLayout(FCLLayout.OneColumn);
+  }
 
   const handleEditEmployeeClick = () => {
     alert('Editing Employee!!!')
@@ -180,7 +188,7 @@ export function EmployeeList() {
           <Button 
             icon="decline"
             design={ButtonDesign.Transparent} 
-            onClick={() => {setLayout(FCLLayout.OneColumn);}} 
+            onClick={closeEmployeeClick} 
           />
         </Toolbar>
 
