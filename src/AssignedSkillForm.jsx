@@ -45,8 +45,12 @@ export function AssignedSkillForm () {
     };
     
     const handleAssignSkillClick = () => {
-        alert('assigned');
-        console.log(skillToAssign);
+        console.log(skillToAssignChange);
+        dispatch({
+            type: 'ASSIGN_SKILL',
+            payload: skillToAssignChange
+        });
+        skillToAssign.pop(0);
     }
 
     return (
