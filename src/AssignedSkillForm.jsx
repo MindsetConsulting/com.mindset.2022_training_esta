@@ -20,8 +20,10 @@ export function AssignedSkillForm () {
     const dispatch = useDispatch();
 
     const skillToAssign = useSelector(store => store.skillToAssignReducer);
+    const employee = useSelector(store => store.selectedEmployeeReducer);
 
     const [skillToAssignChange, setSkillToAssignChange] = useState(skillToAssign[0]);
+    const [employeeId, setEmployeeId] = useState(employee[0].id);
 
     const handleSkillToAssignChange = (e) => {
         setSkillToAssignChange({...skillToAssignChange, [e.target.name]: e.target.value})
@@ -45,10 +47,12 @@ export function AssignedSkillForm () {
     };
     
     const handleAssignSkillClick = () => {
-        console.log(skillToAssignChange);
         dispatch({
             type: 'ASSIGN_SKILL',
-            payload: skillToAssignChange
+            payload: {
+                employeeId,
+                skillToAssignChange
+            }    
         });
         skillToAssign.pop(0);
     }
