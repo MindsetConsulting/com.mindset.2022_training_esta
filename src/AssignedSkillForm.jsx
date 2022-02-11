@@ -21,6 +21,24 @@ export function AssignedSkillForm () {
 
     const skillToAssign = useSelector(store => store.skillToAssignReducer);
 
+    const [skillToAssignChange, setSkillToAssignChange] = useState(skillToAssign[0]);
+
+    const handleSkillToAssignChange = (e) => {
+        setSkillToAssignChange({...skillToAssignChange, [e.target.name]: e.target.value})
+    }
+
+    const handleRenewalChange = (e) => {
+        setSkillToAssignChange({...skillToAssignChange, renewal: e.target.value})
+    }
+
+    const handleComfortLevelChange = (e) => {
+        setSkillToAssignChange({...skillToAssignChange, comfortLevel: e.target.value})
+    }
+
+    const handleDateAcquiredChange = (e) => {
+        setSkillToAssignChange({...skillToAssignChange, dateAcquired: e.detail.value})
+    }
+
     const handleCancelButtonClick = () => {
         skillToAssign.pop(0);
         navigate('/employeelist');
@@ -42,16 +60,18 @@ export function AssignedSkillForm () {
                         <Input 
                             style={{ width: '80%'}}
                             type={InputType.Text}
-                            name="title"
+                            name="skillTitle"
                             value={skillToAssign[0].skillTitle}
+                            onChange={handleSkillToAssignChange}
                         />
                     </FormItem>
                     <FormItem label={'Skill Type'}>
                         <Input
                             style={{ width: '80%'}}
                             type={InputType.Text}
-                            name="type"
+                            name="skillType"
                             value={skillToAssign[0].skillType}
+                            onChange={handleSkillToAssignChange}
                         />
                     </FormItem>
                     <FormItem label={'Assigning Institution'}>
@@ -60,21 +80,23 @@ export function AssignedSkillForm () {
                             type={InputType.Text}
                             name="institution"
                             value={skillToAssign[0].institution}
+                            onChange={handleSkillToAssignChange}
                         />
                     </FormItem>
                     <FormItem label={'Date Acquired'}>
                         <DatePicker 
                             style={{ width: '80%'}}
                             name="startDate"
-                            // value={addEmployee.startDate}
-                            // onChange={handleAcquiredDateChange}
+                            value={skillToAssign[0].dateAcquired}
+                            onChange={handleDateAcquiredChange}
                         ></DatePicker>
                     </FormItem>
                     <FormItem label={'Renewal Status'}>
                         <ComboBox 
                             style={{ width: '80%'}}
                             placeholder="Status"
-                            // onChange={handleRenewalStatusChange}
+                            name="renewal"
+                            onChange={handleRenewalChange}
                         >
                               <ComboBoxItem text='Current' />
                               <ComboBoxItem text='Expired' />
@@ -85,7 +107,8 @@ export function AssignedSkillForm () {
                     <ComboBox 
                             style={{ width: '80%'}}
                             placeholder="Comfort Level"
-                            // onChange={handleComfortLevelChange}
+                            name="comfortLevel"
+                            onChange={handleComfortLevelChange}
                         >
                               <ComboBoxItem text='Amateur' />
                               <ComboBoxItem text='Novice' />

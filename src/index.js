@@ -114,15 +114,19 @@ const departments = [
 ]
 
 
+
 const employeeReducer = (state = employees, action) => {
     switch (action.type) {
         case 'ADD_EMPLOYEE':
             return [...state, action.payload];
         case 'DELETE_EMPLOYEE':
             return state.filter(employee => employee.id !== action.payload);
+        case 'ASSIGN_SKILL':
+            // return [...state, action.payload];
         case 'REMOVE_ASSIGNED_SKILL':
             //filter and then pop, set to a new variable and then remove skill from new variable, return employee array
-            return state.filter(employee => employee.assignedSkills.id !== action.payload)
+            let skillToRemove = state.filter(employee => employee.id !== action.payload).pop()
+            return employees;
         default:
             return state;
     }

@@ -46,8 +46,7 @@ export function EmployeeList() {
   const onStartColumnClick = e => {
     setSelectedEmployee(employees.find(item => item.fullName === e.detail.item.dataset.fullname));
     selectedEmployeeList.push(selectedEmployee);
-    console.log(selectedEmployeeList);
-    setLayout(FCLLayout.TwoColumnsMidExpanded);
+    setLayout(FCLLayout.MidColumnFullScreen);
   };
 
   const onMiddleColumnClick = e => {
@@ -61,6 +60,9 @@ export function EmployeeList() {
       skillTitle: e.detail.selectedItems[0].dataset.skilltitle,
       skillType: e.detail.selectedItems[0].dataset.skilltype,
       institution: e.detail.selectedItems[0].dataset.institution,
+      dateAcquired: '',
+      renewal: '',
+      comfortLevel: ''
     }
     // selectedEmployee.assignedSkills.push(assignedSkill);
     skillToAssign.push(assignedSkill);
